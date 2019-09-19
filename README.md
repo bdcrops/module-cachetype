@@ -8,3 +8,6 @@ This module is used as creating a new cache type Magento 2 extensions.
 
 
 ### 1. Copy and paste
+
+![](docs/CacheStatusCli.png)
+![](docs/CacheStatusAdmin.png)
