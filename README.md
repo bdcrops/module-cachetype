@@ -1,6 +1,9 @@
 # BDC_CacheType
 
 This module is used as creating a new cache type Magento 2 extensions.
+A cache type enables you to specify what is cached and enables merchants to clear that cache type using the Cache Management page in the Magento Admin.
+
+One of the key things is to use Magento cache in a way that we can cache our rendered content on the frontend and flush only the specific blocks if needed. A custom cache type therefore enables us to specify what is cached and enables our clients to clear that specific cache type using the Cache Management option in the Administration.
 
 
 
