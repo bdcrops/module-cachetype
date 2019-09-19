@@ -149,3 +149,43 @@ class Cache extends Helper\AbstractHelper {
 }
 
 ```
+##  FAQ Cache
+
+### Magento 2 - How To Save Custom Data To Cache?
+To maintain the performance of the Magento 2 platform when working with data that is updated rarely or have a large volume, we can use the caching mechanism.
+
+- Create a model or use an existing one, and add the caching interface loading to the constructor.
+```
+public function __construct(
+   Magento\Framework\DataObjectFactory $dataObjectFactory,
+   Magento\Framework\App\CacheInterface $cache,
+   Json $serializer = null  ) {
+   $this->dataObjectFactory = $dataObjectFactory;
+   $this->cache = $cache;
+   $this->serializer = $serializer ?: ObjectManager::getInstance()->get(Json::class);
+}
+```
+- To save the data in the cache, let's call the save method
+```
+$this->cache->save($data, $identifier, $tags, $lifeTime);
+```
+
+Since the caching mechanism can only store a string, the $data parameter is a string, if you need to save the array, you need to use the serializer.
+
+First, we serialize the data $data = $this->serializer->unserialize($data) and then transfer it to the cache for saving.
+
+$identifier - unique identifier of the stored information block.
+
+$tags = array of tags - may be empty.
+
+$lifeTime - the time (in seconds) through which the block will be considered not valid, by default null - it always appears in the cache and valid.
+
+- To get data from the cache
+```
+$this->cache->load($identifier)
+```
+
+If there is no data or the lifetime has expired, the method returns false.
+Do not forget to convert the data after receiving it from the cache, if you have it serialized before recording
+
+### test?
