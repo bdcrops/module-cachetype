@@ -63,7 +63,9 @@ class BDCropsCache extends \Magento\Framework\Cache\Frontend\Decorator\TagScope
 php bin/magento setup:upgrade
 php bin/magento cache:flush
 php bin/magento cache:status
-php bin/magento cache:enable
+php bin/magento cache:enable CACHE_TYPE
+php bin/magento cache:enable bdcrops_cache
+
 
 ```
 
